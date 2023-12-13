@@ -26,6 +26,7 @@ data = [
         "Optionstext", "Optionstext", "Optionstext", "Optionstext"]}
 ]
 
+
 def iter_data():
     """初始化迭代器数据,返回列表-<<索引>>-迭代器对象"""
     global data
@@ -33,6 +34,7 @@ def iter_data():
         yield i
     else:
         return len(data)-1
+
 
 def show(data_index=None):
     """更新组件"""
@@ -66,6 +68,7 @@ def show(data_index=None):
             echo_label["text"] = "憨憨,这个不对呦"
         echo_label.grid(column=1, row=5)
         echo_label.after(1000, lambda: echo_label.grid_forget())
+
 
 if __name__ == "__main__":
 
@@ -101,12 +104,11 @@ if __name__ == "__main__":
     echo_label = tk.Label(master=root)
     echo_label.grid(column=0, row=6)
 
-
     show()
 
     # 倒计时组件,单独放置,方便修改
-    # 
-    countdown = 10 # 倒计时秒数
+    #
+    countdown = 10  # 倒计时秒数
     clock = tk.Frame(root)
     clock.place(relx=0.5, rely=0.5)
     clock_label = tk.Label(master=clock, font=("微软黑体", 25))
@@ -123,7 +125,8 @@ if __name__ == "__main__":
 
     def clock_change(count):
         clock_label["text"] = "倒计时: "+str(count)
-        if count >= 0: frame.after(1000, lambda: clock_change(get_count()))
+        if count >= 0:
+            frame.after(1000, lambda: clock_change(get_count()))
         else:
             # 结束后的函数
             clock_label["text"] = "倒计时结束！！！"
