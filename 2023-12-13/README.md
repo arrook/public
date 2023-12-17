@@ -1,34 +1,47 @@
-# public
- 测试数据答案，1题3，2题1，3题2，4题4
- Riddle.py 中,
- """
- # Data类: 数据结构
-# [{
-#     "question": "questiontext",
-#     "answer": int(4),
-#     "scores": int()
-#     "options":
-#     [
-#        "Optionstext",
-#        "Optionstext",
-#        "Optionstext",
-#        "Optionstext"
-#     ]
-# }]
+# 选择组件使用说明
 
-# 数据以1开始索引
-data = [
-    {"question": "questiontext", "answer": 3, "options": [
-        "Optionstext", "Optionstext", "Optionstext", "Optionstext"]},
-    {"question": "questiontext", "answer": 1, "options": [
-        "Optionstext", "Optionstext", "Optionstext", "Optionstext"]},
-    {"question": "questiontext", "answer": 2, "options": [
-        "Optionstext", "Optionstext", "Optionstext", "Optionstext"]},
-    {"question": "questiontext", "answer": 4, "options": [
-        "Optionstext", "Optionstext", "Optionstext", "Optionstext"]}
+</br></br>
+
+## 组件及组件属性数据结构统一储存，如下所示
+
+```json
+[{
+    "question": "questiontext",
+    "answer": "4",
+    "scores": "2",
+    "options":
+    [
+        "Optionstext",
+        "Optionstext",
+        "Optionstext",
+        "Optionstext"
+    ]
+}]
+```
+<!--  注释  -->
+</br></br>
+
+## 题目数据数据格式储存，如下所示
+
+```json
+data = 
+    [{
+        "question": "questiontext", # 题目文本
+        "answer": 3,                # 答案序号,从1开始,取决于options总数
+        "options":                  # 选项文本
+        [
+            "Optionstext", "Optionstext",
+            "Optionstext", "Optionstext"
+        ]
+    },
+    {
+        "question": "questiontext", 
+        "answer": 1, 
+        "options":
+        [
+            "Optionstext", "Optionstext", 
+            "Optionstext", "Optionstext"
+        ]
+    }
 ]
- """
- data是题型储存格式
-    --question: 题目文本
-    --answer:   答案序号,从1开始,取决于options总数,
-    --options:  选项文本
+```
