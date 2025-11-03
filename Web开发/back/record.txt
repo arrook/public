@@ -1,0 +1,42 @@
+healthcare_backend/
+├── main.py
+├── requirements.txt
+├── config.py
+├── database/
+│   ├── __init__.py
+│   ├── database.py
+│   └── models.py
+├── api/
+│   ├── __init__.py
+│   ├── auth.py
+│   ├── devices.py
+│   ├── data.py
+│   ├── config.py
+│   ├── control.py
+│   └── admin.py
+├── services/
+│   ├── __init__.py
+│   ├── auth_service.py
+│   ├── device_service.py
+│   ├── data_service.py
+│   ├── config_service.py
+│   └── admin_service.py
+├── schemas.py
+├── mqtt/
+│   ├── __init__.py
+│   ├── client.py
+│   └── handlers.py
+├── websocket/
+│   ├── __init__.py
+│   └── manager.py
+├── middleware/
+│   ├── __init__.py
+│   └── auth.py
+├── utils/
+│   ├── __init__.py
+│   └── security.py
+└── exceptions.py
+
+
+
+"{\"max30102\":{\"sample_period\":40,\"heart_rate\":{\"enabled\":true,\"min\":50,\"max\":230,\"voice_text\":\"心率异常，请及时休息\",\"voice_music\":1},\"spo2\":{\"enabled\":true,\"min\":80,\"voice_text\":\"血氧过低，请注意呼吸\",\"voice_music\":2}},\"dht11\":{\"sample_period\":1000,\"temperature\":{\"enabled\":true,\"min\":16,\"max\":26,\"voice_text\":\"环境温度异常\",\"voice_music\":3},\"humidity\":{\"enabled\":true,\"min\":30,\"max\":80,\"voice_text\":\"环境湿度过高\",\"voice_music\":3}},\"ds18b20\":{\"sample_period\":1000,\"temperature\":{\"enabled\":true,\"min\":16,\"max\":26,\"voice_text\":\"环境温度异常\",\"voice_music\":3}},\"mpu6050\":{\"sample_period\":1000,\"accel_range\":0,\"gyro_range\":0,\"dlpf\":3,\"fall_detection\":{\"enabled\":true,\"threshold\":1.9,\"voice_text\":\"检测到跌倒，正在通知紧急联系人\",\"voice_music\":1}},\"gps\":{\"sample_period\":1000,\"fence\":{\"enabled\":true,\"center_lat\":39.9042,\"center_lon\":116.4074,\"radius\":100,\"voice_text\":\"已超出安全区域\",\"voice_music\":2}},\"rgb_led\":{},\"relay\":{\"pillbox\":{\"enabled\":true,\"reminder_times\":[8,12,18],\"reminder_duration\":1800,\"miss_threshold\":1800,\"voice_text\":\"服药时间到了，请按时服药\",\"voice_music\":1}},\"syn6288\":{\"start_text\":{\"enabled\":true,\"voice_text\":\"系统启动完成，开始健康监测\",\"voice_music\":1}}}"

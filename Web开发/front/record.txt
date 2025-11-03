@@ -1,0 +1,102 @@
+PS D:\vscode2019\develop\实习\front> npm create vue@latest
+
+> npx
+> create-vue
+
+┌  Vue.js - The Progressive JavaScript Framework
+│
+◇  请输入项目名称：
+│  m
+│
+◇  请选择要包含的功能： (↑/↓ 切换，空格选择，a 全选，回车确认)
+│  Router（单页面应用开发）, Pinia（状态管理）, Vitest（单元测试）, ESLint（错误预防）, Prettier（代码格式化）
+│
+◇  选择要包含的试验特性： (↑/↓ 切换，空格选择，a 全选，回车确认)
+│  none
+│
+◇  跳过所有示例代码，创建一个空白的 Vue 项目？
+│  No
+
+正在初始化项目 D:\vscode2019\develop\实习\front\m...
+│
+└  项目初始化完成，可执行以下命令：
+
+   cd m
+   npm install
+   npm run format
+   npm run dev
+
+| 可选：使用以下命令在项目目录中初始化 Git：
+  
+   git init && git add -A && git commit -m "initial commit"
+
+src/
+├── api/                 # API接口
+├── components/          # 通用组件
+├── views/               # 页面组件
+├── stores/              # Pinia状态管理
+├── router/              # 路由配置
+├── utils/               # 工具函数
+├── assets/              # 静态资源
+└── types/               # TypeScript类型定义
+
+
+/
+├── /devices
+│   ├── API: GET /devices（来自 devices.ts fetchDevices）
+│   ├── 跳转 → /device/:id
+│   │   ├── API: GET /devices/:id（来自 devices.ts fetchDevice）
+│   │   └── 跳转 → /monitor/:id
+│   └── 跳转 → /monitor/:id（直接跳转）
+│       └── API: GET /sensor-data/:id（来自 devices.ts fetchSensorData）
+│       └── WebSocket: ws://localhost:8000/ws/:id（来自 websocket.ts）
+├── /monitor/:id（直接从仪表盘跳转）
+│   └── 同上，依赖 API + WebSocket
+├── /settings
+│   ├── 子页：用户管理、系统配置、报警设置
+│   └── 暂无子页面跳转
+├── /login
+│   └── API: POST /auth/login（来自 auth.ts login）
+├── /register
+│   └── API: POST /auth/register（来自 auth.ts register）
+
+front/m/src/api/index.ts
+  40, 8: export default api;
+
+front/m/src/stores/admin.ts
+  4, 8: import api from '@/api';
+
+front/m/src/stores/auth.ts
+  5, 8: import api from '@/api';
+  14, 28: const response = await api.post('/auth/login', credentials);
+  24, 28: const response = await api.post('/auth/register', userData);
+  37, 30: const response = await api.get('/auth/profile');
+
+front/m/src/stores/devices.ts
+  5, 8: import api from '@/api';
+  24, 30: const response = await api.get('/devices');
+  34, 30: const response = await api.get(`/devices/${deviceId}`);
+  44, 30: const response = await api.get(`/sensor-data/${deviceId}?limit=${limit}`);
+  54, 30: const response = await api.get(`/latest-sensor-data/${deviceId}`);
+
+front/m/src/views/DeviceDetailView.vue
+  199, 8: import api from '@/api';
+  262, 28: const response = await api.get(`/devices/${deviceId}/config`);
+  329, 28: const response = await api.post(`/devices/${deviceId}/config`, configData);
+
+front/m/src/views/DevicesView.vue
+  87, 8: import api from '@/api';
+  112, 28: const response = await api.post('/devices', newDevice);
+  127, 28: const response = await api.delete(`/devices/${deviceId}`);
+
+front/m/src/views/MonitorView.vue
+  125, 8: import api from '@/api';
+  233, 28: const response = await api.post(`/devices/${deviceId}/control`, control);
+  242, 28: const response = await api.get(`/devices/${deviceId}/config `);
+  256, 28: const response = await api.post(`/devices/${deviceId}/config `, config);
+
+front/m/src/views/SettingsView.vue
+  226, 8: import api from '@/api';
+  307, 28: const response = await api.get('/admin/users');
+  364, 30: const response = await api.post('/auth/register', userForm);
+  384, 28: const response = await api.patch(`/admin/users/${user.id}`, { is_active: !user.is_active });
